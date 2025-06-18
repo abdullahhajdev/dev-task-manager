@@ -20,6 +20,18 @@ model User {
   password String
   role     Role    @default(USER)
   createdAt DateTime @default(now())
+
+
+  projects Project[]
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  owner       User     @relation(fields: [ownerId], references: [id])
+  ownerId     Int
+  createdAt   DateTime @default(now())
 }
 
 
